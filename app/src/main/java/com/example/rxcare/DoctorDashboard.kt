@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.rxcare.databinding.ActivityDoctorDashboardBinding
+import com.example.rxcare.fragments.*
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class DoctorDashboard : AppCompatActivity() {
@@ -17,24 +18,21 @@ class DoctorDashboard : AppCompatActivity() {
         setContentView(binding.root)
 
 
+        val homeFragment= HomeFragment()
+        val appointmentFragment= AppoinmentFragment()
+        val trackerFragment= TrackerFragment()
+        val chatFragment= ChatFragment()
+        val profileFragment= ProfileFragment()
 
-
-
-        val dashboardFragment=HomeFragment()
-        val appointmentFragment=AppoinmentFragment()
-        val trackerFragment=TrackerFragment()
-        val chatFragment=ChatFragment()
-        val profileFragment=ProfileFragment()
-
-        setCurrentFragment(dashboardFragment)
+        setCurrentFragment(homeFragment)
 
         bottomNavigationView.setOnItemSelectedListener {
             when(it.itemId){
-                R.id.dashboardFragment->setCurrentFragment(dashboardFragment)
-                R.id.appoinmentFragment->setCurrentFragment(appointmentFragment)
-                R.id.trackerFragment->setCurrentFragment(trackerFragment)
-                R.id.chatFragment->setCurrentFragment(chatFragment)
-                R.id.profileFragment->setCurrentFragment(profileFragment)
+                R.id.home->setCurrentFragment(homeFragment)
+                R.id.appointment->setCurrentFragment(appointmentFragment)
+                R.id.tracker->setCurrentFragment(trackerFragment)
+                R.id.chat->setCurrentFragment(chatFragment)
+                R.id.profile->setCurrentFragment(profileFragment)
 
 
 
@@ -47,12 +45,9 @@ class DoctorDashboard : AppCompatActivity() {
 
     private fun setCurrentFragment(fragment: Fragment)=
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.nav_fragment,fragment)
+            replace(R.id.frame,fragment)
             commit()
         }
-
-
-
 
 
 
