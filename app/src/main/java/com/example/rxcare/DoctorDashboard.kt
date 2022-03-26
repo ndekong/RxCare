@@ -5,11 +5,10 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.rxcare.databinding.ActivityDoctorDashboardBinding
 import com.example.rxcare.fragments.*
-import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class DoctorDashboard : AppCompatActivity() {
-    private lateinit var binding:ActivityDoctorDashboardBinding
-    private lateinit var bottomNavigationView: BottomNavigationView
+    private lateinit var binding: ActivityDoctorDashboardBinding
+//    private lateinit var bottomNavigationView: BottomNavigationView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,23 +17,22 @@ class DoctorDashboard : AppCompatActivity() {
         setContentView(binding.root)
 
 
-        val homeFragment= HomeFragment()
-        val appointmentFragment= AppoinmentFragment()
-        val trackerFragment= TrackerFragment()
-        val chatFragment= ChatFragment()
-        val profileFragment= ProfileFragment()
+        val homeFragment = HomeFragment()
+        val appointmentFragment = AppoinmentFragment()
+        val trackerFragment = TrackerFragment()
+        val chatFragment = ChatFragment()
+        val profileFragment = ProfileFragment()
 
         setCurrentFragment(homeFragment)
 
-        bottomNavigationView.setOnItemSelectedListener {
-            when(it.itemId){
-                R.id.home->setCurrentFragment(homeFragment)
-                R.id.appointment->setCurrentFragment(appointmentFragment)
-                R.id.tracker->setCurrentFragment(trackerFragment)
-                R.id.chat->setCurrentFragment(chatFragment)
-                R.id.profile->setCurrentFragment(profileFragment)
-
-
+        //TODO: you can use binding to access the bottomNavigationView directly without declaring it
+        binding.bottomNavigationView.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.home -> setCurrentFragment(homeFragment)
+                R.id.appointment -> setCurrentFragment(appointmentFragment)
+                R.id.tracker -> setCurrentFragment(trackerFragment)
+                R.id.chat -> setCurrentFragment(chatFragment)
+                R.id.profile -> setCurrentFragment(profileFragment)
 
 
             }
@@ -43,12 +41,11 @@ class DoctorDashboard : AppCompatActivity() {
 
     }
 
-    private fun setCurrentFragment(fragment: Fragment)=
+    private fun setCurrentFragment(fragment: Fragment) =
         supportFragmentManager.beginTransaction().apply {
-            replace(R.id.frame,fragment)
+            replace(R.id.frame, fragment)
             commit()
         }
-
 
 
 }
